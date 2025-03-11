@@ -135,8 +135,6 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var postsArray = [];
 var template;
-
-// Отримання списку постів
 function getPosts() {
   return _getPosts.apply(this, arguments);
 }
@@ -180,7 +178,7 @@ function _getPosts() {
 }
 function createPost(_x, _x2) {
   return _createPost.apply(this, arguments);
-} // Оновлення поста
+}
 function _createPost() {
   _createPost = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(title, content) {
     var response, newPost;
@@ -245,7 +243,7 @@ var updatePost = /*#__PURE__*/function () {
             body: JSON.stringify({
               title: title,
               content: content
-            }) // Send the post data as an object
+            })
           });
         case 3:
           response = _context.sent;
@@ -260,15 +258,13 @@ var updatePost = /*#__PURE__*/function () {
         case 8:
           updatedPost = _context.sent;
           console.log("Updated post:", updatedPost);
-
-          // Optionally, update the postsArray locally to reflect the updated post
           postsArray = postsArray.map(function (post) {
             return post.id === id ? _objectSpread(_objectSpread({}, post), {}, {
               title: title,
               content: content
             }) : post;
           });
-          renderPosts(postsArray); // Re-render the updated posts list
+          renderPosts(postsArray);
           _context.next = 17;
           break;
         case 14:
@@ -285,11 +281,9 @@ var updatePost = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-
-// Видалення поста
 function deletePost(_x6) {
   return _deletePost.apply(this, arguments);
-} // Додавання коментаря до поста
+}
 function _deletePost() {
   _deletePost = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
     var response;
@@ -313,11 +307,10 @@ function _deletePost() {
           }
           throw new Error("Failed to delete the post");
         case 7:
-          // Remove the post from the local posts array after successful deletion
           postsArray = postsArray.filter(function (post) {
             return post.id !== Number(id);
           });
-          renderPosts(postsArray); // Re-render the posts list to reflect the change
+          renderPosts(postsArray);
           _context4.next = 14;
           break;
         case 11:
@@ -334,7 +327,7 @@ function _deletePost() {
 }
 function createComment(_x7, _x8) {
   return _createComment.apply(this, arguments);
-} // Оновлення відображення постів на сторінці
+}
 function _createComment() {
   _createComment = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(postId, commentText) {
     var response, result;
@@ -403,8 +396,6 @@ function renderPosts(posts) {
   });
   menuContainer.innerHTML = postTemplate;
 }
-
-// Обробник події для створення поста
 document.getElementById("createPostForm").addEventListener("submit", function (e) {
   e.preventDefault();
   var title = document.getElementById("titleInput").value;
@@ -413,12 +404,6 @@ document.getElementById("createPostForm").addEventListener("submit", function (e
   document.getElementById("titleInput").value = "";
   document.getElementById("contentInput").value = "";
 });
-
-// Обробник події для редагування поста
-//   document.addEventListener('click', cb);
-
-// Оновлення поста
-
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("editPostButton")) {
     var findId = event.target.getAttribute("data-id");
@@ -430,8 +415,6 @@ document.addEventListener("click", function (event) {
     }
   }
 });
-
-// Обробник події для видалення поста
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("deletePostButton")) {
     var id = event.target.getAttribute("data-id");
@@ -443,8 +426,6 @@ document.addEventListener("click", function (event) {
     }
   }
 });
-
-// Обробник події для додавання коментаря
 document.addEventListener("submit", function (event) {
   if (event.target.classList.contains("createCommentForm")) {
     event.preventDefault();
@@ -459,8 +440,6 @@ document.addEventListener("submit", function (event) {
     commentInput.value = "";
   }
 });
-
-// Запуск додатку
 function startApp() {
   return _startApp.apply(this, arguments);
 }
@@ -483,8 +462,8 @@ function _startApp() {
           console.error("Template source is empty");
           return _context6.abrupt("return");
         case 8:
-          template = Handlebars.compile(source); // Move this here so template is available globally
-          renderPosts(postsArray); // No need to call renderPosts again in startApp
+          template = Handlebars.compile(source);
+          renderPosts(postsArray);
         case 10:
         case "end":
           return _context6.stop();
@@ -519,7 +498,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57724" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57481" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
